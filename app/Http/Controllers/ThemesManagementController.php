@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use Validator;
 
 class ThemesManagementController extends Controller
@@ -53,7 +52,7 @@ class ThemesManagementController extends Controller
      */
     public function store(Request $request)
     {
-        $input = Input::only('name', 'link', 'notes', 'status');
+        $input = $request->only('name', 'link', 'notes', 'status');
 
         $validator = Validator::make($input, Theme::rules());
 
@@ -142,7 +141,7 @@ class ThemesManagementController extends Controller
     {
         $theme = Theme::find($id);
 
-        $input = Input::only('name', 'link', 'notes', 'status');
+        $input = $request->only('name', 'link', 'notes', 'status');
 
         $validator = Validator::make($input, Theme::rules($id));
 
